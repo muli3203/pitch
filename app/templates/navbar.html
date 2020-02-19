@@ -1,41 +1,29 @@
-<nav class="navbar navbar-expand-lg text-reset bg-dark">
-    <a class="navbar-brand" href="">Pich-World</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="">All Pitches</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">New Pitch</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" style= 'margin-right:30px' data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              
-              <i class="fas fa-user text-info"></i>&nbsp;<strong>{{current_user.username}}</strong> </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-              <a class="dropdown-item" href=""><i class="fa fa-user"></i>&nbsp; My account</a>
-              <a class="dropdown-item " href=""><i class="fas fa-sign-out-alt"></i>&nbsp; Log out</a>
-            </div>  
-            </li>
-            {% if current_user.is_authenticated %}
-            <li class="nav-item">
-                <!-- <a  class="nav-link" href="{{url_for('auth.login')}}" style= 'margin-right:30px'><i class="fas fa-sign-in-alt"></i>&nbsp; <strong>Log In</strong></a> -->
-                <a style= 'margin-right:30px' class="nav-link" href=""><i class="fas fa-user-plus"></i></i>&nbsp; <strong>Log Out</strong></a>
-            </li>
-            {% else %}
-            <li class="nav-item ">
-                <a  class="nav-link" href="" style= 'margin-right:30px'><i class="fas fa-sign-in-alt"></i>&nbsp; <strong>Log In</strong></a>
-                    <!-- <a style= 'margin-right:30px' class="nav-link" href="{{url_for('auth.signup')}}"><i class="fas fa-user-plus"></i></i>&nbsp; <strong>Sign Up</strong></a> -->
-              </li>
-            {% endif %}   
-        </ul>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{url_for('main.index')}}">Pitch-World</a>
     </div>
-  </nav>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('main.pitches') }}">All Pitches</a></li>
+        <li><a href="{{ url_for('main.new_pitch') }}">New Pitch</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_anonymous %}
+        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+        {% else %}
+        <li><a href="{{ url_for('main.profile', uname=current_user.username) }}">Profile</a></li>
+        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
