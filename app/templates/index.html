@@ -1,16 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% if title %}
-    <title> {{ title }}</title>
-    {% else %}
-    <title>A Pitcher app</title>
-    {% endif %}
-</head>
-<body>
-    se5drtgyujiopkl
-</body>
-</html>
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+{% block content %}
+<div id="bg"></div>
+<div class="wrapper">
+  <div style="text-align:center; font-size:30px;">
+    <span style="font-size:200px; font-family: 'Delius Swash Caps', cursive; text-align:center;"
+      class="text-white">Pitch World</span>
+  </div>
+  <div class="card jumbotron">
+    <div class="card-body" style="text-align: center">
+      <p class="card-text">
+        <a href="{{url_for('main.pitches', category='product')}}"
+          style="font-size:40px; color: black; font-family: 'Delius Swash Caps', cursive;">
+          <br>
+          Product Pitches
+        </a></p>
+    </div>
+  </div>
+  <div class="card jumbotron">
+    <div class="card-body" style="text-align: center; ">
+
+      <p><a href="{{url_for('main.pitches', category='interview')}}"
+          style="font-size:40px; text-align:center; color: black; font-family: 'Delius Swash Caps', cursive;">
+          <br>
+          Interview Pitches
+        </a></p>
+    </div>
+  </div>
+  <div class="card jumbotron"">
+        <div class=" card-body" style="text-align: center">
+    <p class="card-text">
+      <a href="{{url_for('main.pitches', category='promotion')}}"
+        style="font-size:40px; color: black; font-family: 'Delius Swash Caps', cursive;">
+        <br>
+        Promotion Pitches
+      </a></p>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var bgPattern = document.getElementById("bg")
+  window.addEventListener("scroll", function () {
+    bgPattern.style.backgroundPosition = +window.pageYOffset + "px";
+  })
+</script>
+{% endblock %}
