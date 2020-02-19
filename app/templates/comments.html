@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1> Pitch Comments </h1>
+    </div>
+    <div class="media">
+        <div class="media-left">
+            <a href="{{url_for('main.profile', uname=pitch.user.username)}}">
+                <img class="media-object" src="..." alt="...">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="{{url_for('main.profile', uname=pitch.user.username)}}">{{ pitch.user.username }}</a>
+            </h4>
+            <p>{{ pitch.content }}</p>
+            <div class="mdeia-body">
+                <ul class="media-list">
+                    {% for comment in comments %}
+                    <li class="media">
+                        <div class="media-left">
+                            <a href="{{url_for('main.profile', uname=comment.user.username)}}">
+                                <img class="media-object" src="..." alt="...">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <a
+                                    href="{{url_for('main.profile', uname=pitch.user.username)}}">{{ comment.user.username }}</a>
+                            </h4>
+                            <p>{{ comment.comment }}</p>
+
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {{wtf.quick_form(comment_form)}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
