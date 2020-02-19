@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        {% if category %}
+        <h1> {{ category | upper }} pitches </h1>
+        {% else %}
+        <h1> All pitches </h1>
+        {% endif %}
+    </div>
+    {% for pitch in pitches %}
+    <div class="media">
+        <div class="media-left">
+            <a href="{{url_for('main.profile', uname=pitch.user.username)}}">
+                <img class="media-object" src="..." alt="...">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading"><a
+                    href="{{url_for('main.profile', uname=pitch.user.username)}}">{{ pitch.user.username }}</a></h4>
+            <p>{{ pitch.content }}</p>
+            <a href="{{url_for('main.view_comments', pitch_id=pitch.id)}}" class="btn btn-default btn-sm active"
+                role="button">Comments</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
