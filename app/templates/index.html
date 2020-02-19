@@ -1,8 +1,6 @@
 {% extends 'base.html'%}
-{% import 'macros.html' as macro%}
 
 {% block content %}
-<div id="bg"></div>
 <div class="wrapper">
   <div style="text-align:center; font-size:30px;">
     <span style="font-size:200px; font-family: 'Delius Swash Caps', cursive; text-align:center;"
@@ -38,11 +36,4 @@
       </a></p>
   </div>
 </div>
-
-<script type="text/javascript">
-  var bgPattern = document.getElementById("bg")
-  window.addEventListener("scroll", function () {
-    bgPattern.style.backgroundPosition = +window.pageYOffset + "px";
-  })
-</script>
 {% endblock %}
